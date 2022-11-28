@@ -213,6 +213,12 @@ impl<F: PrimeField, P: PoseidonRoundParams<F>> TwoToOneCRH for CRH<F, P> {
         left_input: &[u8],
         right_input: &[u8],
     ) -> Result<Self::Output, Error> {
+        println!(
+            "left input len: {}, lil * 8: {}, left input size bits: {}",
+            left_input.len(),
+            left_input.len() * 8,
+            Self::LEFT_INPUT_SIZE_BITS
+        );
         assert_eq!(left_input.len(), right_input.len());
         assert!(left_input.len() * 8 <= Self::LEFT_INPUT_SIZE_BITS);
         let chained: Vec<_> = left_input
